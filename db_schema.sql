@@ -1,5 +1,5 @@
 -- DROP DATABASE IF EXISTS work_db; 
-CREATE database ;
+CREATE database work_db;
 
 USE work_db;
 
