@@ -1,6 +1,6 @@
 USE work_db;
 
-INSERT INTO department (name)
+INSERT INTO department (department_name)
 VALUES 
 ('Web Services'),
 ('Cyber Security'),

@@ -4,7 +4,6 @@ const consoleTable = require("console.table");
 const sequelize = require('./config/connection');
 
 const employee = require('./lib/employee');
-const { exit } = require("node:process");
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -98,7 +97,7 @@ function init() {
 
                 case "Exit employee tracker":
                     console.log("Goodbye!");
-                    process.exit();
+                    // process.exit();
 
                 default:
                     console.log(`Invalid input: ${answer.action}`);
@@ -107,17 +106,43 @@ function init() {
         });
 }
 
-viewEmp();
-viewDep();
-viewRole();
-addEmp();
-addDep();
-addRole();
-deleteEmp();
-deleteDep();
-deleteRole();
-totalWages();
-viewByManager();
-updateRole();
-updateManager();
-exit();
+function viewEmp() {
+    const query = "SELECT * FROM employee";
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.log(res.length + ' employees in database.');
+        console.table('now viewing all employees:', res);
+        init();
+    })
+};
+
+function viewDep() {
+    const query = "SELECT * FROM department";
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.log(res.length + ' departments in database.');
+        console.table('now viewing all departments:', res);
+        init();
+    })
+};
+
+function viewRole() {
+    const query = "SELECT * FROM role";
+    connection.query(query, function(err, res) {
+        if (err) throw err;
+        console.log(res.length + ' roles in database.');
+        console.table('now viewing all roles:', res);
+        init();
+    })
+};
+// addEmp();
+// addDep();
+// addRole();
+// deleteEmp();
+// deleteDep();
+// deleteRole();
+// totalWages();
+// viewByManager();
+// updateRole();
+// updateManager();
+// exit();
